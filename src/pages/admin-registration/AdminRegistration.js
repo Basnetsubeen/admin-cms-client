@@ -76,10 +76,9 @@ const AdminRegistration = () => {
       return alert("Password do not match");
     }
     const result = await postUser(rest);
-    console.log(result);
     setResponse(result);
   };
-  console.log(response);
+
   return (
     <div>
       <Header />

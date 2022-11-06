@@ -1,13 +1,50 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Button, Container, Form } from "react-bootstrap";
+import CustomInputField from "../../components/customInputField/CustomInputField";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
+import useState from "react";
 
 const LoginPage = () => {
+  const [form, setForm] = useState({});
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
   return (
     <div>
       <Header />
-      <Container className="page-main"></Container>
+      <Container className="page-main">
+        <div className="form">
+          <h3>Welcome Back</h3>
+          <hr />
+          <Form onSubmit={handleOnSubmit}>
+            <CustomInputField
+              label="Email"
+              type="email"
+              name="email"
+              required={true}
+              palceholder="your@gmail.com"
+              onChange={handleOnChange}
+            />
+            <CustomInputField
+              label="Password"
+              type="password"
+              name="password"
+              required={true}
+              palceholder="********"
+              onChange={handleOnChange}
+            />
+            <Button type="submit" variant="primary">
+              Login
+            </Button>
+          </Form>
+        </div>
+      </Container>
       <Footer />
     </div>
   );
