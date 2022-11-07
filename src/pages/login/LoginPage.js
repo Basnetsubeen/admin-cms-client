@@ -6,21 +6,28 @@ import Header from "../../components/header/Header";
 import { useState } from "react";
 import { loginUserAction } from "./userAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const [form, setForm] = useState({});
   const { user } = useSelector((state) => state.admin);
 
+  const origin =
+    (location.state && location.state.from && location.state.from.pathname) ||
+    "/dashboard";
+
   useEffect(() => {
-    user._id && navigate("/dashboard");
-  }, [user, navigate]);
+    user._id && navigate(origin);
+  }, [user, navigate, origin]);
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUserAction(form));
