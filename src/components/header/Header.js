@@ -23,7 +23,7 @@ const Header = () => {
         <Container>
           <div>
             {user._id && <i class="fa-solid fa-bars" onClick={handleShow}></i>}{" "}
-            <Navbar.Brand href="#home">CMS</Navbar.Brand>
+            <Navbar.Brand href="#">CMS</Navbar.Brand>
           </div>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

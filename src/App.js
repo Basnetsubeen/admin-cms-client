@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Product from "./pages/products/Product";
 import PrivateRouter from "./components/private-router/PrivateRouter";
+import Category from "./pages/categories/Category";
 
 const App = () => {
   return (
@@ -31,7 +32,15 @@ const App = () => {
               </PrivateRouter>
             }
           />
-          {/* Private router */}
+          <Route
+            path="/category"
+            element={
+              <PrivateRouter>
+                <Category />
+              </PrivateRouter>
+            }
+          />
+          {/* Public router */}
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<AdminRegistration />} />
           <Route path="/admin/verify-email" element={<EmailVerification />} />
