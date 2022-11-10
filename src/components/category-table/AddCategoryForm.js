@@ -17,7 +17,6 @@ const AddCategoryForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(postCategoriesAction(form));
-    console.log(form);
   };
   return (
     <div>
