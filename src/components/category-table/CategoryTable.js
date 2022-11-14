@@ -19,9 +19,9 @@ const CategoryTable = () => {
     dispatch(setModalShow());
   };
 
-  console.log(selectedCategory);
   const parentCategory = categories.filter(({ parentId }) => !parentId);
   const childCategory = categories.filter(({ parentId }) => parentId);
+
   return (
     <div>
       <Row>
@@ -82,7 +82,7 @@ const CategoryTable = () => {
                             {"  "}
                             <Button
                               variant="warning"
-                              onClick={() => handleOnEdit(item)}
+                              onClick={() => handleOnEdit(child)}
                             >
                               Edit
                             </Button>
