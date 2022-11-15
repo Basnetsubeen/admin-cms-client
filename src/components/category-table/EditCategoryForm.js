@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { postCategoriesAction } from "../../pages/categories/categoryAction";
+import { updateCategoriesAction } from "../../pages/categories/categoryAction";
 import { CustomModel } from "../model/CustomModel";
 
 const EditCategoryForm = ({ selectedCategory }) => {
@@ -21,7 +21,8 @@ const EditCategoryForm = ({ selectedCategory }) => {
   };
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(postCategoriesAction(form));
+    const { __v, slug, createdAt, updatedAt, ...rest } = form;
+    dispatch(updateCategoriesAction(rest));
   };
   return (
     <div>

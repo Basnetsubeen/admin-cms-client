@@ -66,3 +66,20 @@ export const postCategory = (data) => {
   };
   return apiProcessor(option);
 };
+//update category
+export const updateCategory = (data) => {
+  const option = {
+    method: "put",
+    url: categoryEP,
+    data,
+  };
+  return apiProcessor(option);
+};
+//delete category
+export const deleteCategory = (_id) => {
+  const option = {
+    method: "delete",
+    url: categoryEP + "/" + _id,
+  };
+  return apiProcessor(option);
+};

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getCategoriesAction } from "../../pages/categories/categoryAction";
+import {
+  deleteCategoriesAction,
+  getCategoriesAction,
+} from "../../pages/categories/categoryAction";
 import { setModalShow } from "../../pages/system-state/SystemSlice";
 import EditCategoryForm from "./EditCategoryForm";
 
@@ -17,6 +20,12 @@ const CategoryTable = () => {
   const handleOnEdit = (categoory) => {
     setSelectedCategory(categoory);
     dispatch(setModalShow());
+  };
+
+  const handleOnDelete = (_id) => {
+    if (window.confirm("Are you sure you want to delete this category?")) {
+      dispatch(deleteCategoriesAction(_id));
+    }
   };
 
   const parentCategory = categories.filter(({ parentId }) => !parentId);
@@ -52,7 +61,12 @@ const CategoryTable = () => {
                     <td>{item.name}</td>
                     <td>{item.parentId ? "chidren" : "Parent"}</td>
                     <td>
-                      <Button variant="danger">Delete</Button>
+                      <Button
+                        variant="danger"
+                        onClick={() => handleOnDelete(item._id)}
+                      >
+                        Delete
+                      </Button>
                       {"  "}
                       <Button
                         variant="warning"
@@ -78,7 +92,12 @@ const CategoryTable = () => {
                           <td>{child.name}</td>
                           <td>{child.parentId ? "chidren" : "Parent"}</td>
                           <td>
-                            <Button variant="danger">Delete</Button>
+                            <Button
+                              variant="danger"
+                              onClick={() => handleOnDelete(child._id)}
+                            >
+                              Delete
+                            </Button>
                             {"  "}
                             <Button
                               variant="warning"
